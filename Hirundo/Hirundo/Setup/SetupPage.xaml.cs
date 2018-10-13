@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Hirundo
+namespace Hirundo.Setup
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SetupPage : ContentPage
