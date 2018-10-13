@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hirundo.SetupPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Your Nickname"
+                FontSize="32"
+                FontAttributes="Bold"
+                TextColor="#3aaa6a"
+                Grid.Column="1"
+                Grid.Row="1"/>
+
+            <Entry x:Name="Username"
+                Text="{Binding Username}"
+                FontSize="Medium"
+                VerticalOptions="CenterAndExpand"
+                Placeholder="Enter your nickname"
+                Grid.Column="1"
+                Grid.Row="2"/>
+
+            <Button Command="{Binding SubmitName}"
+                Text="Submit"
+                FontSize="Medium"
+                BackgroundColor="#3aaa6a"
+                TextColor="White"
+                Grid.Column="1"
+                Grid.Row="3"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
