@@ -3,12 +3,75 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Hirundo"
              x:Class="Hirundo.MainPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-    <StackLayout>
-        <!-- Place new controls here -->
-    	<Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
 
+            <Label Text="Log In"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   TextColor="#095b41"
+                   Grid.Column="1"
+                   Grid.Row="1"/>
+
+            <Entry x:Name="Username"
+                   Text="{Binding Username}"
+                   FontSize="Medium"
+                   VerticalOptions="CenterAndExpand"
+                   Placeholder="Username"
+                   Grid.Column="1"
+                   Grid.Row="2"/>
+
+            <Entry x:Name="Password"
+                   Text="{Binding Password}"
+                   FontSize="Medium"
+                   VerticalOptions="CenterAndExpand"
+                   Placeholder="Password"
+                   IsPassword="True"
+                   Grid.Column="1"
+                   Grid.Row="3"/>
+
+            <Button Command="{Binding Submit}"
+                    Text="Submit"
+                    FontSize="Medium"
+                    BackgroundColor="#095b41"
+                    TextColor="White"
+                    Grid.Column="1"
+                    Grid.Row="4"/>
+
+            <Button Command="{Binding NewAccount}"
+                    Text="Create Account?"
+                    FontAttributes="Italic"
+                    FontSize="Small"
+                    BackgroundColor="Transparent"
+                    TextColor="Gray"
+                    Grid.Column="1"
+                    Grid.Row="5"/>
+
+            <Button Command="{Binding ForgotPassword}"
+                    Text="Forgot Password?"
+                    FontAttributes="Italic"
+                    FontSize="Small"
+                    BackgroundColor="Transparent"
+                    TextColor="Gray"
+                    Grid.Column="1"
+                    Grid.Row="6"/>
+
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>
