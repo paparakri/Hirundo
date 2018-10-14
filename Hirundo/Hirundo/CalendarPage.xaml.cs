@@ -9,12 +9,12 @@ using XamForms.Controls;
 
 namespace Hirundo
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CalendarPage : ContentPage
-	{
-		public CalendarPage ()
-		{
-			InitializeComponent ();
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CalendarPage : ContentPage
+    {
+        public CalendarPage()
+        {
+            InitializeComponent();
             new Calendar
             {
                 BorderColor = Color.Black,
@@ -24,5 +24,5 @@ namespace Hirundo
                 StartDate = DateTime.Now
             };
         }
-	}
+    }
 }

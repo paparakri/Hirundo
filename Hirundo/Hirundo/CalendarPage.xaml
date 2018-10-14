@@ -15,6 +15,6 @@
 			SelectedDate="{Binding Date}"
 			SpecialDates="{Binding Attendances}"
 			DateCommand="{Binding DateChosen}" >
-		</controls:Calendar>
+        </controls:Calendar>
     </ContentPage.Content>
 </ContentPage>
