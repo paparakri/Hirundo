@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    x:Class="Hirundo.NewHabit.PopUpPage">
+
+    <Grid Padding="20,20,20,20"
+          HorizontalOptions="Center"
+          VerticalOptions="Center"
+          BackgroundColor="White"
+          Opacity=".85">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Button
+            Image="meditation.png"
+            x:Name="Meditation"
+            Command="{Binding ChangeText}"
+            CommandParameter="Meditation"
+            BorderRadius="100"
+            WidthRequest="150"
+            HeightRequest="150"
+            Grid.Column="0"
+            Grid.Row="0"
+            Clicked="ClosePopup"
+        />
+        
+        <Button
+            Image="workout.png"
+            x:Name="Workout"
+            Command="{Binding ChangeText}"
+            CommandParameter="Workout"
+            BorderRadius="100"
+            WidthRequest="150"
+            HeightRequest="150"
+            Grid.Column="0"
+            Grid.Row="1"
+            Clicked="ClosePopup"
+        />
+        
+        <Button
+            Image="running.png"
+            x:Name="Running"
+            Command="{Binding ChangeText}"
+            CommandParameter="Running"
+            BorderRadius="100"
+            WidthRequest="150"
+            HeightRequest="150"
+            Grid.Column="1"
+            Grid.Row="0"
+            Clicked="ClosePopup"
+        />
+        
+        <Button
+            Image="study.png"
+            x:Name="Study"
+            Command="{Binding ChangeText}"
+            CommandParameter="Study"
+            BorderRadius="100"
+            WidthRequest="150"
+            HeightRequest="150"
+            Grid.Column="1"
+            Grid.Row="1"
+            Clicked="ClosePopup"
+        />
+
+    </Grid>
+
+</pages:PopupPage>
