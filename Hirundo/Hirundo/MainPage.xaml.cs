@@ -11,7 +11,10 @@ namespace Hirundo
 	{
 		public MainPage()
 		{
-			InitializeComponent();
+            var view_model = new ViewModel();
+            BindingContext = view_model;
+
+            InitializeComponent();
 		}
 	}
 }
