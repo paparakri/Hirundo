@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hirundo.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,12 +10,9 @@ namespace Hirundo
 {
 	public partial class MainPage : ContentPage
 	{
-		public MainPage()
+        public MainPage()
 		{
-            var view_model = new ViewModel();
-            BindingContext = view_model;
-
             InitializeComponent();
 		}
-	}
+    }
 }
