@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hirundo.NewHabit.NewHabitPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Text="New Habit"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                TextColor="#3aaa6a"
+                FontSize="32"
+                Margin="50"
+                FontAttributes="Bold"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Grid.Row="0" />
+
+            <Entry x:Name="NewHabitName"
+                Text="{Binding newHabitName}"
+                FontSize="Medium"
+                VerticalOptions="CenterAndExpand"
+                Placeholder="Title"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Grid.Row="1" />
+
+            <Entry x:Name="NewHabitQuantity"
+                Text="{Binding newHabitQuantity}"
+                FontSize="Medium"
+                VerticalOptions="CenterAndExpand"
+                Placeholder="Choose Quantity"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Grid.Row="2" />
+
+            <Button x:Name="IconButton"
+                BackgroundColor="#004d59"
+                Text="Choose Icon"
+                TextColor="White"
+                FontSize="Small"
+                BorderRadius="100"
+                WidthRequest="150"
+                HeightRequest="150"
+                Grid.Column="2"
+                Grid.Row="4"
+                Clicked="ShowPopup"/>
+
+            <Button x:Name="DoneHabit"
+                Command="{Binding SaveHabit}"
+                BackgroundColor="#004d59"
+                Opacity=".4"
+                Text="Done"
+                TextColor="White"
+                FontSize="Small"
+                Grid.Row="6"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"/>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>
