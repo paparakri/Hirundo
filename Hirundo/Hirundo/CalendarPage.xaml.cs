@@ -14,7 +14,7 @@ namespace Hirundo
     {
         public CalendarPage()
         {
-            var view_model = new CalendarVM();
+            var view_model = new ViewModel();
             BindingContext = view_model;
             
             InitializeComponent();
