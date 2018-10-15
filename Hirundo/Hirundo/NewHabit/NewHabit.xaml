@@ -23,8 +23,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Label
-                Text="New Habit"
+            <Label Text="New Habit"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="Center"
                 TextColor="#3aaa6a"
