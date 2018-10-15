@@ -14,7 +14,11 @@ namespace Hirundo
     {
         public CalendarPage()
         {
+            var view_model = new CalendarVM();
+            BindingContext = view_model;
+            
             InitializeComponent();
+            
             new Calendar
             {
                 BorderColor = Color.Black,
