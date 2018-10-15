@@ -29,7 +29,8 @@ namespace Hirundo
                 PropertyChanged(this, new PropertyChangedEventArgs("Username"));
             }
         }
-
+        
+        public string DisplayName = "Hello, "+Settings.GetUsername;
         public void SaveName()
         {
             Settings.GetUsername = Username;
