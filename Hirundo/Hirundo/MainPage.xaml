@@ -14,8 +14,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
-            <Label Text="{Binding DisplayName}"
+
+            <Label Text="Hello"
                    VerticalOptions="StartAndExpand"
                    HorizontalOptions="CenterAndExpand"
                    TextColor="#3aaa6a"
