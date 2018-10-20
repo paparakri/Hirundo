@@ -6,4 +6,4 @@ The bird genus [Hirundo](https://en.wikipedia.org/wiki/Hirundo) is a group of pa
 
 ![alt text](http://style.org/images/unladenswallow/swallow_st3.gif)
 
->African or European?
+>Both African and European.
