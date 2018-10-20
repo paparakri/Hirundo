@@ -1,43 +1,23 @@
-﻿using Hirundo.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Hirundo
+namespace Hirundo.ShowCalendar
 {
-    class ViewModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged = delegate { };
-
-        public Action moveto_main;
-        public ICommand SubmitName { set; get; }
-
-        public ViewModel()
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propertyName)
         {
-            SubmitName = new Command(SaveName);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+    }
 
-        private string username;
-        public string Username
-        {
-            get => username;
-            set {
-                username = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Username"));
-            }
-        }
-        
-        public string DisplayName = "Hello, "+Settings.GetUsername;
-        
-        public void SaveName()
-        {
-            Settings.GetUsername = Username;
-            moveto_main();
-        }
-        
+    public class CalendarVM : BaseViewModel
+    {
         private DateTime? _date;
         public DateTime? Date
         {
@@ -68,5 +48,6 @@ namespace Hirundo
                 });
             }
         }
+
     }
 }

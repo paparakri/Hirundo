@@ -7,7 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamForms.Controls;
 
-namespace Hirundo
+namespace Hirundo.ShowCalendar
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CalendarPage : ContentPage
