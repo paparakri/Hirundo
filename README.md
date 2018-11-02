@@ -2,9 +2,6 @@
 Reach your max airspeed velociy
 Android self-improvement app for the StCatsHacks Hackathon 2018
 
-The bird genus Hirundo is a group of passerines in the family Hirundinidae (swallows and martins)
-https://en.wikipedia.org/wiki/Hirundo
+The bird genus [Hirundo](https://en.wikipedia.org/wiki/Hirundo) is a group of passerines in the family Hirundinidae (swallows and martins)
 
 ![alt text](http://style.org/images/unladenswallow/swallow_st3.gif)
-
->African or European?
