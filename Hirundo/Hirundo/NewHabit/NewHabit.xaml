@@ -35,7 +35,7 @@
                 Grid.Row="0" />
 
             <Entry x:Name="NewHabitName"
-                Text="{Binding newHabitName}"
+                Text="{Binding NewHabitName}"
                 FontSize="Medium"
                 VerticalOptions="CenterAndExpand"
                 Placeholder="Title"
@@ -44,7 +44,7 @@
                 Grid.Row="1" />
 
             <Entry x:Name="NewHabitQuantity"
-                Text="{Binding newHabitQuantity}"
+                Text="{Binding NewHabitQuantity}"
                 FontSize="Medium"
                 VerticalOptions="CenterAndExpand"
                 Placeholder="Choose Quantity"

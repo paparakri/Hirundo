@@ -16,7 +16,7 @@ namespace Hirundo
             }
             else {
                 System.Diagnostics.Debug.WriteLine("=====" + Settings.GetUsername);
-                MainPage = new MainPage();
+                MainPage = new NewHabit.NewHabitPage();
             }
 
             InitializeComponent();

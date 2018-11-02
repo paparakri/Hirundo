@@ -53,7 +53,7 @@ namespace Hirundo.NewHabit
 
         public void SaveInfo()
         {
-            Debug.WriteLine("===== " + IconText + NewHabitName, NewHabitQuantity);
+            Debug.WriteLine("===== " + IconText + NewHabitName + NewHabitQuantity);
         }
     }
 }
