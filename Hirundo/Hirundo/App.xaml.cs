@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Hirundo.Helpers;
 using Hirundo.Setup;
+using Hirundo.NewHabit;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace Hirundo
@@ -16,7 +17,7 @@ namespace Hirundo
             }
             else {
                 System.Diagnostics.Debug.WriteLine("=====" + Settings.GetUsername);
-                MainPage = new NewHabit.NewHabitPage();
+                MainPage = new NewHabitPage();
             }
 
             InitializeComponent();
