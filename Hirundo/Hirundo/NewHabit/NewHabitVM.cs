@@ -5,23 +5,89 @@ using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Rg.Plugins.Popup.Extensions;
+using System.Data.SQLite;
 
 namespace Hirundo.NewHabit
 {
     class ViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-
-        public ICommand ChangeText { set; get; }
-        public ICommand SaveHabit { set; get; }
+        public ICommand DoneHabit { set; get; }
         public ViewModel()
         {
-            ChangeText = new Command<string> (Change2Text);
-            SaveHabit = new Command (SaveInfo);
+            DoneHabit = new Command (SaveInfo);
         }
 
-        public string IconText;
+        public bool monday;
+        public bool Monday
+        {
+            get => monday;
+            set
+            {
+                monday = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Monday"));
+            }
+        }
+        public bool tuesday;
+        public bool Tuesday
+        {
+            get => tuesday;
+            set
+            {
+                tuesday = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Tuesday"));
+            }
+        }
+        public bool wednesday;
+        public bool Wednesday
+        {
+            get => wednesday;
+            set
+            {
+                wednesday = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Wednesday"));
+            }
+        }
+        public bool thursday;
+        public bool Thursday
+        {
+            get => thursday;
+            set
+            {
+                thursday = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Thursday"));
+            }
+        }
+        public bool friday;
+        public bool Friday
+        {
+            get => friday;
+            set
+            {
+                friday = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Friday"));
+            }
+        }
+        public bool saturday;
+        public bool Saturday
+        {
+            get => saturday;
+            set
+            {
+                saturday = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Saturday"));
+            }
+        }
+        public bool sunday;
+        public bool Sunday
+        {
+            get => sunday;
+            set
+            {
+                sunday = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Sunday"));
+            }
+        }
 
         public string newHabitName;
         public string NewHabitName
@@ -34,26 +100,9 @@ namespace Hirundo.NewHabit
             }
         }
 
-        public string newHabitQuantity;
-        public string NewHabitQuantity
-        {
-            get => newHabitQuantity;
-            set
-            {
-                newHabitQuantity = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("NewHabitQuantity"));
-            }
-        }
-
-        public void Change2Text(string iconText)
-        {
-            IconText = iconText;
-            Debug.WriteLine("===== " + IconText);
-        }
-
         public void SaveInfo()
         {
-            Debug.WriteLine("===== " + IconText + NewHabitName + NewHabitQuantity);
+            
         }
     }
 }
