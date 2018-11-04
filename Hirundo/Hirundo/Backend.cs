@@ -18,11 +18,14 @@ namespace Hirundo
     }
     public class Task
     {
+        [SQLite.PrimaryKey]
         public string title { get; set; }
+
         public bool monday { get; set; }
         public bool tuesday { get; set; }
-        public bool wednesay { get; set; }
+        public bool wednesday { get; set; }
         public bool thursday { get; set; }
+        public bool friday { get; set; }
         public bool saturday { get; set; }
         public bool sunday { get; set; }
         public int timesDone { get; set; }

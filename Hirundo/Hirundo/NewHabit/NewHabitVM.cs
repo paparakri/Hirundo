@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -8,6 +9,35 @@ using Xamarin.Forms;
 
 namespace Hirundo.NewHabit
 {
+
+    public class SQLiteController
+    {
+        SQLiteConnection database;
+
+        public SQLiteController()
+        {
+            database = SQLite_Android.GetConnection();
+        }
+        public bool SaveTask(Task task)
+        {
+            try
+            {
+                database.Insert(task);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("===== " + ex);
+                return false;
+            }
+        }
+
+        public Task GetTask()
+        {
+            return database.Table<Task>().First();
+        }
+    }
+
     class ViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
@@ -101,7 +131,19 @@ namespace Hirundo.NewHabit
 
         public void SaveInfo()
         {
-            
+            SQLiteController controller = new SQLiteController();
+
+            Task newTask = new Task();
+            newTask.title = NewHabitName;
+            newTask.monday = monday;
+            newTask.tuesday = tuesday;
+            newTask.wednesday = wednesday;
+            newTask.thursday = thursday;
+            newTask.friday = friday;
+            newTask.saturday = saturday;
+            newTask.sunday = sunday;
+
+            controller.SaveTask(newTask);
         }
     }
 }
