@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
-using System.Data.SQLite;
 
 namespace Hirundo.NewHabit
 {
