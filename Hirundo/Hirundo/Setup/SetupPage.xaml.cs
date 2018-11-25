@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Hirundo.NewHabit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+ 
 namespace Hirundo.Setup
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -16,7 +17,7 @@ namespace Hirundo.Setup
             var view_model = new ViewModel();
             BindingContext = view_model;
 
-            view_model.moveto_main += () => App.Current.MainPage = new MainPage();
+            view_model.moveto_main += () => App.Current.MainPage = new NewHabitPage();
 
             InitializeComponent ();
 		}

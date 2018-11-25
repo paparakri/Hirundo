@@ -5,63 +5,55 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="75"/>
-                <RowDefinition Height="75"/>
-                <RowDefinition Height="75"/>
-                <RowDefinition Height="75"/>
-                <RowDefinition Height="75"/>
-                <RowDefinition Height="75"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="130"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="15"/>
             </Grid.ColumnDefinitions>
 
             <Label Text="New Habit"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="Center"
-                TextColor="#3aaa6a"
-                FontSize="32"
-                Margin="50"
-                FontAttributes="Bold"
-                Grid.Column="1"
-                Grid.ColumnSpan="3"
-                Grid.Row="0" />
+                   TextColor="#3aaa6a"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   Grid.Column="1"
+                   Grid.Row="1" />
 
             <Entry x:Name="NewHabitName"
-                Text="{Binding NewHabitName}"
-                FontSize="Medium"
-                VerticalOptions="CenterAndExpand"
-                Placeholder="Title"
-                Grid.Column="1"
-                Grid.ColumnSpan="3"
-                Grid.Row="1" />
+                   Text="{Binding NewHabitName}"
+                   FontSize="Medium"
+                   TextColor="White"
+                   Placeholder="Title"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Column="1"
+                   Grid.Row="2" />
 
             <Label x:Name="SelectDaysLabel"
-                   Text="Select The Days For This Task"
+                   Text="Select the days for this task"
                    FontSize="Medium"
-                   TextColor="Black"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
                    Grid.Column="1"
-                   Grid.ColumnSpan="3"
-                   Grid.Row="2"
+                   Grid.Row="3"
                 />
 
-            <Grid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="3">
+            <Grid Grid.Column="1" Grid.Row="4">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -74,107 +66,104 @@
                        Text="M"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
-                       Grid.Column="0"
+                       Grid.Column="1"
                        Grid.Row="0"
                     />
 
                 <Switch x:Name="Monday"
-                        IsToggled="{Binding Monday}"
-                        Grid.Column="0"
+                        IsToggled="{Binding days[0]}"
+                        Grid.Column="1"
                         Grid.Row="1"/>
 
                 <Label x:Name="LabelTuesday"
                        Text="T"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
-                       Grid.Column="1"
+                       Grid.Column="2"
                        Grid.Row="0"
                     />
 
                 <Switch x:Name="Tuesday"
-                        IsToggled="{Binding Tuesday}"
-                        Grid.Column="1"
+                        IsToggled="{Binding days[1]}"
+                        Grid.Column="2"
                         Grid.Row="1"/>
 
                 <Label x:Name="LabelWednesday"
                        Text="W"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
-                       Grid.Column="2"
+                       Grid.Column="3"
                        Grid.Row="0"
                     />
 
                 <Switch x:Name="Wednesday"
-                        IsToggled="{Binding Wednesday}"
-                        Grid.Column="2"
+                        IsToggled="{Binding days[2]}"
+                        Grid.Column="3"
                         Grid.Row="1"/>
 
                 <Label x:Name="LabelThursday"
                        Text="T"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
-                       Grid.Column="3"
+                       Grid.Column="4"
                        Grid.Row="0"
                     />
 
-                <Switch x:Name="Thurday"
-                        IsToggled="{Binding Thursday}"
-                        Grid.Column="3"
+                <Switch x:Name="Thursday"
+                        IsToggled="{Binding days[3]}"
+                        Grid.Column="4"
                         Grid.Row="1"/>
 
                 <Label x:Name="LabelFriday"
                        Text="F"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
-                       Grid.Column="4"
-                       Grid.Row="0"
+                       Grid.Column="1"
+                       Grid.Row="2"
                     />
 
                 <Switch x:Name="Friday"
-                        IsToggled="{Binding Friday}"
-                        Grid.Column="4"
-                        Grid.Row="1"/>
+                        IsToggled="{Binding days[4]}"
+                        Grid.Column="1"
+                        Grid.Row="3"/>
 
                 <Label x:Name="LabelSaturday"
                        Text="S"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
-                       Grid.Column="5"
-                       Grid.Row="0"
+                       Grid.Column="2"
+                       Grid.Row="2"
                     />
 
                 <Switch x:Name="Saturday"
-                        IsToggled="{Binding Saturday}"
-                        Grid.Column="5"
-                        Grid.Row="1"/>
+                        IsToggled="{Binding days[5]}"
+                        Grid.Column="2"
+                        Grid.Row="3"/>
 
                 <Label x:Name="LabelSunday"
                        Text="S"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
-                       Grid.Column="6"
-                       Grid.Row="0"
-                    />
+                       Grid.Column="3"
+                       Grid.Row="2"/>
 
                 <Switch x:Name="Sunday"
-                        IsToggled="{Binding Sunday}"
-                        Grid.Column="6"
-                        Grid.Row="1"/>
-
+                        IsToggled="{Binding days[6]}"
+                        Grid.Column="3"
+                        Grid.Row="3"/>
             </Grid>
 
             <Button x:Name="DoneHabit"
-                Command="{Binding DoneHabit}"
-                BackgroundColor="#004d59"
-                Opacity=".4"
-                Text="Done"
-                TextColor="White"
-                FontSize="Small"
-                Grid.Row="6"
-                Grid.Column="1"
-                Grid.ColumnSpan="3"/>
-
+                    Command="{Binding DoneHabit}"
+                    BackgroundColor="#3aaa6a"
+                    Text="Done"
+                    TextColor="White"
+                    FontSize="Small"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Margin="25"
+                    Grid.Column="1"
+                    Grid.Row="5"/>
         </Grid>
-
     </ContentPage.Content>
 </ContentPage>

@@ -44,86 +44,15 @@ namespace Hirundo.NewHabit
         public ICommand DoneHabit { set; get; }
         public ViewModel()
         {
-            DoneHabit = new Command (SaveInfo);
+            DoneHabit = new Command(SaveInfo);
         }
 
-        public bool monday;
-        public bool Monday
-        {
-            get => monday;
-            set
-            {
-                monday = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Monday"));
-            }
-        }
-        public bool tuesday;
-        public bool Tuesday
-        {
-            get => tuesday;
-            set
-            {
-                tuesday = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Tuesday"));
-            }
-        }
-        public bool wednesday;
-        public bool Wednesday
-        {
-            get => wednesday;
-            set
-            {
-                wednesday = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Wednesday"));
-            }
-        }
-        public bool thursday;
-        public bool Thursday
-        {
-            get => thursday;
-            set
-            {
-                thursday = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Thursday"));
-            }
-        }
-        public bool friday;
-        public bool Friday
-        {
-            get => friday;
-            set
-            {
-                friday = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Friday"));
-            }
-        }
-        public bool saturday;
-        public bool Saturday
-        {
-            get => saturday;
-            set
-            {
-                saturday = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Saturday"));
-            }
-        }
-        public bool sunday;
-        public bool Sunday
-        {
-            get => sunday;
-            set
-            {
-                sunday = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Sunday"));
-            }
-        }
-
+        public bool[] days = new bool[7];
         public string newHabitName;
         public string NewHabitName
         {
             get => newHabitName;
-            set
-            {
+            set {
                 newHabitName = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("NewHabitName"));
             }
@@ -133,17 +62,15 @@ namespace Hirundo.NewHabit
         {
             SQLiteController controller = new SQLiteController();
 
-            Task newTask = new Task();
-            newTask.title = NewHabitName;
-            newTask.monday = monday;
-            newTask.tuesday = tuesday;
-            newTask.wednesday = wednesday;
-            newTask.thursday = thursday;
-            newTask.friday = friday;
-            newTask.saturday = saturday;
-            newTask.sunday = sunday;
+            Task newTask = new Task {
+                title = NewHabitName
+            };
+
+            for (int i = 0; i < 7; i++)
+                newTask.daysofweek[i] = days[i];
 
             controller.SaveTask(newTask);
+            App.Current.MainPage = new MainPage();
         }
     }
 }
