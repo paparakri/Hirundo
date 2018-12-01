@@ -30,7 +30,6 @@
             <Entry x:Name="NewHabitName"
                    Text="{Binding NewHabitName}"
                    FontSize="Medium"
-                   TextColor="White"
                    Placeholder="Title"
                    VerticalOptions="CenterAndExpand"
                    Grid.Column="1"
