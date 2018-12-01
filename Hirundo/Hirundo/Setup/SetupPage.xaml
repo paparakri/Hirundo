@@ -27,7 +27,6 @@
 
             <Entry x:Name="Username"
                 Text="{Binding Username}"
-                TextColor="Black"
                 FontSize="Medium"
                 VerticalOptions="CenterAndExpand"
                 Placeholder="Enter your nickname"
