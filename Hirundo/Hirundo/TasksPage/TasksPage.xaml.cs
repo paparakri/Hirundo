@@ -13,12 +13,19 @@ namespace Hirundo.TasksPage
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class TasksPage : ContentPage
 	{
+     /*
+     TO DO:
+     - days[N] binding not working in newhabit
+     - toggle switch automatically if task is completed for today
+     - delete task (set task.active=false)
+     */
         SQLiteConnection database;
         public Action moveto_newtask;
         public ICommand GoToHabit { set; get; }
 
         public TasksPage ()
 		{
+
             InitializeComponent();
 
             System.Diagnostics.Debug.WriteLine("===== IN TASKS PAGE");
