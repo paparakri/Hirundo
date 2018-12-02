@@ -9,6 +9,12 @@ using Xamarin.Forms;
 
 namespace Hirundo.NewHabit
 {
+     /*
+     TO DO:
+     - days[N] binding not working in newhabit
+     - toggle switch automatically if task is completed for today
+     - delete task (set task.active=false)
+     */
 
     public class SQLiteController
     {

@@ -28,74 +28,127 @@ namespace Hirundo.TasksPage
 
             var grid = new Grid() {
                 RowDefinitions = {
-                    new RowDefinition() { Height=GridLength.Auto },
-                    new RowDefinition() { Height=75 },
+                    new RowDefinition() { Height=25 },
+                    new RowDefinition() { Height=100 },
+                    new RowDefinition() { Height=85 },
                 },
                 ColumnDefinitions = {
-                    new ColumnDefinition() { Width=15 },
-                    new ColumnDefinition() { Width=GridLength.Auto },
-                    new ColumnDefinition() { Width=75 },
-                    new ColumnDefinition() { Width=50 },
-                    new ColumnDefinition() { Width=15 }
+                    new ColumnDefinition() { Width=25 },
+                    new ColumnDefinition() { Width=200 },
+                    new ColumnDefinition() { Width=70 },
+                    new ColumnDefinition() { Width=70 },
+                    new ColumnDefinition() { Width=GridLength.Auto }
                 }
             };
+
+            //Get day of week 1-Monday, 7-Sunday
+            int dayindex = ((int)DateTime.Now.DayOfWeek == 0) ? 7 : (int)DateTime.Now.DayOfWeek;
+            string[] daynames = new string[7] {
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"};
+            string daystring = daynames[dayindex - 1];
 
             moveto_newtask += () => App.Current.MainPage = new NavigationPage(new NewHabitPage());
 
             var donetoggle = new Switch();
+            var spacer = new BoxView();
 
             Label greet = new Label() {
                 Text = String.Format("Hello, {0}.", Settings.GetUsername),
                 TextColor = Color.FromHex("#3aaa6a"),
                 FontSize = 32,
-                Margin=25,
                 FontAttributes = FontAttributes.Bold,
                 HorizontalOptions = LayoutOptions.Start
             };
 
-            Grid.SetColumnSpan(greet, 2);
-            grid.Children.Add(greet, 1, 1);
+            Label showday = new Label() {
+                Text = String.Format("Today is {0}.", daystring),
+                TextColor = Color.FromHex("#00b0cc"),
+                FontSize = 24,
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.Start
+            };
 
-            int rowcnt = 2;
+            Grid.SetColumnSpan(greet, 3);
+            Grid.SetColumnSpan(showday, 3);
+            grid.Children.Add(greet, 1, 1);
+            grid.Children.Add(showday, 1, 2);
+
+            int rowcnt = 3;
+            string taskdays = "";
 
             //Draw tasks
             foreach (var i in GetTasks()) {
+                taskdays = "";
+                for (int k = 0; k < 7; k++) {
+                    if (i.daysofweek[k])
+                        taskdays += daynames[k][0];
+                    System.Diagnostics.Debug.WriteLine(i.daysofweek[k]);
+                }
                 grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-
-                if (i.DoneToday)
-                    System.Diagnostics.Debug.WriteLine("Completed task " + i.title);
-                else System.Diagnostics.Debug.WriteLine("Remaining task " + i.title);
 
                 grid.Children.Add(new Label {
                     Text = i.title,
+                    TextColor = Color.Black,
+                    FontSize = 18,
+                    Margin=10,
                     HorizontalOptions = LayoutOptions.Start,
                     VerticalOptions = LayoutOptions.CenterAndExpand
                 }, 1, rowcnt);
 
-                donetoggle = new Switch {
-                    HorizontalOptions = LayoutOptions.CenterAndExpand,
+                grid.Children.Add(new Label {
+                    Text = taskdays,
+                    TextColor = Color.FromHex("#00b0cc"),
+                    FontSize = 18,
+                    Margin = 10,
+                    HorizontalOptions = LayoutOptions.Start,
                     VerticalOptions = LayoutOptions.CenterAndExpand
+                }, 2, rowcnt);
+
+                donetoggle = new Switch {
+                    Margin = 10,
+                    HorizontalOptions = LayoutOptions.StartAndExpand,
+                    VerticalOptions = LayoutOptions.StartAndExpand
                 };
 
-                grid.Children.Add(donetoggle, 2, rowcnt);
+                grid.Children.Add(donetoggle, 3, rowcnt);
+
                 rowcnt++;
             }
 
             //New task button
+            grid.RowDefinitions.Add(new RowDefinition() { Height = 15 });
             grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
 
             Button button = new Button {
                 Text = "New Task",
                 Command = GoToHabit,
-                BackgroundColor = Color.FromHex("#3aaa6a"),
-                TextColor = Color.White,
-                VerticalOptions = LayoutOptions.Center,
-                HorizontalOptions = LayoutOptions.Center,
-                Margin = 25
+                BackgroundColor = Color.FromHex("#cc2a45"),
+                TextColor=Color.White,
+                VerticalOptions = LayoutOptions.End,
+                HorizontalOptions = LayoutOptions.Start,
             };
 
             Grid.SetColumnSpan(button, 2);
-            grid.Children.Add(button, 1, rowcnt);
+            grid.Children.Add(button, 1, rowcnt+1);
+
+            //Add cheesy quote
+            var quote = new Label {
+                Text = "\n\nThe way get Started is to quit talking and begin doing. \n\n– Walt Disney",
+                FontSize = 14,
+                FontAttributes = FontAttributes.Italic,
+                TextColor = Color.Gray,
+                VerticalOptions=LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.End
+            };
+
+            Grid.SetColumnSpan(quote, 2);
+            grid.Children.Add(quote, 1, rowcnt+2);
 
             var scrollView = new ScrollView {
                 Content = grid

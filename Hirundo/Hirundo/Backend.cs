@@ -22,7 +22,7 @@ namespace Hirundo
         public string title { get; set; }
         public bool[] daysofweek = new bool[7];
         public int TimesDone { get; set; }
-        public bool DoneToday = false;
+        public bool active=true;
     }
 
     public static class SQLite_Android
