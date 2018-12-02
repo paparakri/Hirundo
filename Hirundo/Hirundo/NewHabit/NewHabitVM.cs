@@ -70,7 +70,7 @@ namespace Hirundo.NewHabit
                 newTask.daysofweek[i] = days[i];
 
             controller.SaveTask(newTask);
-            App.Current.MainPage = new MainPage();
+            App.Current.MainPage = new TasksPage.TasksPage();
         }
     }
 }
