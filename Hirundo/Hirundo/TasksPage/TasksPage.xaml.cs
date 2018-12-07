@@ -31,23 +31,14 @@ namespace Hirundo.TasksPage
         public Action moveto_newtask;
         public ICommand GoToHabit { set; get; }
 
-        public TasksPage ()
-		{
-
-            InitializeComponent();
-
-            System.Diagnostics.Debug.WriteLine("===== IN TASKS PAGE");
-            database = SQLite_Android.GetConnection();
-
-            GoToHabit = new Command(MoveToTask);
-
-            var grid = new Grid() {
-                RowDefinitions = {
+        public Grid grid = new Grid()
+        {
+            RowDefinitions = {
                     new RowDefinition() { Height=25 },
                     new RowDefinition() { Height=100 },
                     new RowDefinition() { Height=85 },
                 },
-                ColumnDefinitions = {
+            ColumnDefinitions = {
                     new ColumnDefinition() { Width=25 },
                     new ColumnDefinition() { Width=150 },
                     new ColumnDefinition() { Width=70 },
@@ -55,8 +46,10 @@ namespace Hirundo.TasksPage
                     new ColumnDefinition() { Width=70 },
                     new ColumnDefinition() { Width=GridLength.Auto }
                 }
-            };
+        };
 
+        public void render_tasks()
+        {
             //Get day of week 1-Monday, 7-Sunday
             int dayindex = ((int)DateTime.Now.DayOfWeek == 0) ? 7 : (int)DateTime.Now.DayOfWeek;
             string[] daynames = new string[7] {
@@ -75,7 +68,8 @@ namespace Hirundo.TasksPage
             var donetoggle = new Switch();
             var spacer = new BoxView();
 
-            Label greet = new Label() {
+            Label greet = new Label()
+            {
                 Text = String.Format("Hello, {0}.", Settings.GetUsername),
                 TextColor = Color.FromHex("#3aaa6a"),
                 FontSize = 32,
@@ -83,7 +77,8 @@ namespace Hirundo.TasksPage
                 HorizontalOptions = LayoutOptions.Start
             };
 
-            Label showday = new Label() {
+            Label showday = new Label()
+            {
                 Text = String.Format("Today is {0}.", daystring),
                 TextColor = Color.FromHex("#00b0cc"),
                 FontSize = 24,
@@ -101,7 +96,8 @@ namespace Hirundo.TasksPage
             var taskname = new Label();
 
             //Draw tasks
-            foreach (var i in GetTasks()) {
+            foreach (var i in GetTasks())
+            {
                 //if (!i.active) continue;
                 taskdays = "";
 
@@ -114,7 +110,8 @@ namespace Hirundo.TasksPage
                 */
                 grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
 
-                taskname = new Label {
+                taskname = new Label
+                {
                     Text = i.title,
                     TextColor = Color.Black,
                     FontSize = 18,
@@ -125,7 +122,8 @@ namespace Hirundo.TasksPage
 
                 grid.Children.Add(taskname, 1, rowcnt);
 
-                grid.Children.Add(new Label {
+                grid.Children.Add(new Label
+                {
                     Text = taskdays,
                     TextColor = Color.FromHex("#00b0cc"),
                     FontSize = 18,
@@ -134,8 +132,9 @@ namespace Hirundo.TasksPage
                     VerticalOptions = LayoutOptions.CenterAndExpand
                 }, 2, rowcnt);
 
-                grid.Children.Add(new Label {
-                    Text =i.TimesDone+"/"+i.goal,
+                grid.Children.Add(new Label
+                {
+                    Text = i.TimesDone + "/" + i.goal,
                     TextColor = Color.FromHex("#00b0cc"),
                     FontSize = 18,
                     Margin = 10,
@@ -143,7 +142,8 @@ namespace Hirundo.TasksPage
                     VerticalOptions = LayoutOptions.CenterAndExpand
                 }, 3, rowcnt);
 
-                donetoggle = new Switch {
+                donetoggle = new Switch
+                {
                     Margin = 10,
                     HorizontalOptions = LayoutOptions.StartAndExpand,
                     VerticalOptions = LayoutOptions.StartAndExpand
@@ -151,7 +151,8 @@ namespace Hirundo.TasksPage
 
                 donetoggle.Toggled += (sender, e) => {
                     i.TimesDone++;
-                    System.Diagnostics.Debug.WriteLine("===== "+i.TimesDone);
+                    //render_tasks();
+                    System.Diagnostics.Debug.WriteLine("===== " + i.TimesDone);
                 };
 
                 grid.Children.Add(donetoggle, 4, rowcnt);
@@ -160,9 +161,10 @@ namespace Hirundo.TasksPage
                 var task_tap = new TapGestureRecognizer();
                 task_tap.Tapped += async (s, e) =>
                 {
-                    bool answer = await DisplayAlert("Confirmation", "Delete task '"+i.title+"'?", "DELETE", "KEEP");
-                    if(answer) i.active = false;
-                    System.Diagnostics.Debug.WriteLine("===== Deleted task: "+i.title);
+                    bool answer = await DisplayAlert("Confirmation", "Delete task '" + i.title + "'?", "DELETE", "KEEP");
+                    if (answer) i.active = false;
+                    //render_tasks();
+                    System.Diagnostics.Debug.WriteLine("===== Deleted task: " + i.title);
                 };
                 taskname.GestureRecognizers.Add(task_tap);
             }
@@ -171,30 +173,45 @@ namespace Hirundo.TasksPage
             grid.RowDefinitions.Add(new RowDefinition() { Height = 15 });
             grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
 
-            Button button = new Button {
+            Button button = new Button
+            {
                 Text = "New Task",
                 Command = GoToHabit,
                 BackgroundColor = Color.FromHex("#cc2a45"),
-                TextColor=Color.White,
+                TextColor = Color.White,
                 VerticalOptions = LayoutOptions.End,
                 HorizontalOptions = LayoutOptions.Start,
             };
 
             Grid.SetColumnSpan(button, 2);
-            grid.Children.Add(button, 1, rowcnt+1);
+            grid.Children.Add(button, 1, rowcnt + 1);
 
             //Add cheesy quote
-            var quote = new Label {
+            var quote = new Label
+            {
                 Text = "\n\nThe way get started is to quit talking and begin doing. \n\n– Walt Disney\n",
                 FontSize = 14,
                 FontAttributes = FontAttributes.Italic,
                 TextColor = Color.Gray,
-                VerticalOptions=LayoutOptions.Start,
+                VerticalOptions = LayoutOptions.Start,
                 HorizontalOptions = LayoutOptions.End
             };
 
             Grid.SetColumnSpan(quote, 2);
-            grid.Children.Add(quote, 1, rowcnt+2);
+            grid.Children.Add(quote, 1, rowcnt + 2);
+        }
+
+        public TasksPage ()
+		{
+
+            InitializeComponent();
+
+            System.Diagnostics.Debug.WriteLine("===== IN TASKS PAGE");
+            database = SQLite_Android.GetConnection();
+
+            GoToHabit = new Command(MoveToTask);
+
+            render_tasks();
 
             var scrollView = new ScrollView {
                 Content = grid
