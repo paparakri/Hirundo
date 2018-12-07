@@ -64,12 +64,23 @@ namespace Hirundo.NewHabit
             }
         }
 
+        private string newHabitGoal;
+        public string NewHabitGoal
+        {
+            get => newHabitGoal;
+            set {
+                newHabitGoal = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("NewHabitGoal"));
+            }
+        }
+
         public void SaveInfo()
         {
             SQLiteController controller = new SQLiteController();
 
             Task newTask = new Task {
-                title = NewHabitName
+                title = NewHabitName,
+                goal = Int32.Parse(NewHabitGoal)
             };
 
             for (int i = 0; i < 7; i++)

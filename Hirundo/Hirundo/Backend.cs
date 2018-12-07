@@ -21,10 +21,9 @@ namespace Hirundo
         [SQLite.PrimaryKey]
         public string title { get; set; }
         public bool[] daysofweek = new bool[7];
+        public int goal { get; set; }
         public int TimesDone { get; set; }
-        public bool donetoday;
-        public DateTime lastdone;  
-        public bool active=true;
+        public bool active { get; set; }
     }
 
     public static class SQLite_Android

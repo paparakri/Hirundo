@@ -49,7 +49,8 @@ namespace Hirundo.TasksPage
                 },
                 ColumnDefinitions = {
                     new ColumnDefinition() { Width=25 },
-                    new ColumnDefinition() { Width=200 },
+                    new ColumnDefinition() { Width=150 },
+                    new ColumnDefinition() { Width=70 },
                     new ColumnDefinition() { Width=70 },
                     new ColumnDefinition() { Width=70 },
                     new ColumnDefinition() { Width=GridLength.Auto }
@@ -101,13 +102,7 @@ namespace Hirundo.TasksPage
 
             //Draw tasks
             foreach (var i in GetTasks()) {
-                if (!i.active) continue;
-
-                System.Diagnostics.Debug.WriteLine("===== " + i.title + " : " + i.donetoday);
-                if (i.lastdone > DateTime.Now.Date)
-                    i.donetoday = false;
-                System.Diagnostics.Debug.WriteLine("===== "+i.title+ " : "+i.donetoday);
-
+                //if (!i.active) continue;
                 taskdays = "";
 
                 for (int k = 0; k < 7; k++) {
@@ -137,6 +132,15 @@ namespace Hirundo.TasksPage
                     VerticalOptions = LayoutOptions.CenterAndExpand
                 }, 2, rowcnt);
 
+                grid.Children.Add(new Label {
+                    Text =i.TimesDone+"/"+i.goal,
+                    TextColor = Color.FromHex("#00b0cc"),
+                    FontSize = 18,
+                    Margin = 10,
+                    HorizontalOptions = LayoutOptions.Start,
+                    VerticalOptions = LayoutOptions.CenterAndExpand
+                }, 3, rowcnt);
+
                 donetoggle = new Switch {
                     Margin = 10,
                     HorizontalOptions = LayoutOptions.StartAndExpand,
@@ -144,13 +148,11 @@ namespace Hirundo.TasksPage
                 };
 
                 donetoggle.Toggled += (sender, e) => {
-                    i.donetoday = true;
-                    i.lastdone = DateTime.Now.Date;
-                    System.Diagnostics.Debug.WriteLine("===== "+i.donetoday);
+                    i.TimesDone++;
+                    System.Diagnostics.Debug.WriteLine("===== "+i.TimesDone);
                 };
 
-                //donetoggle.IsToggled = i.donetoday;
-                grid.Children.Add(donetoggle, 3, rowcnt);
+                grid.Children.Add(donetoggle, 4, rowcnt);
 
                 rowcnt++;
                 var task_tap = new TapGestureRecognizer();
@@ -161,7 +163,6 @@ namespace Hirundo.TasksPage
                     System.Diagnostics.Debug.WriteLine("===== Deleted task: "+i.title);
                 };
                 taskname.GestureRecognizers.Add(task_tap);
-
             }
 
             //New task button

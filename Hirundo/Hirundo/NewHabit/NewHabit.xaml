@@ -9,6 +9,7 @@
                 <RowDefinition Height="75"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="*"/>
@@ -35,16 +36,26 @@
                    Grid.Column="1"
                    Grid.Row="2" />
 
+            <Entry x:Name="goal"
+                   Text="{Binding NewHabitGoal}"
+                   FontSize="Medium"
+                   Placeholder="Goal"
+                   Keyboard="Numeric"
+                   VerticalOptions="CenterAndExpand"
+                   WidthRequest="25"
+                   Grid.Column="1"
+                   Grid.Row="3" />
+
             <Label x:Name="SelectDaysLabel"
                    Text="Select the days for this task"
                    FontSize="Medium"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand"
                    Grid.Column="1"
-                   Grid.Row="3"
+                   Grid.Row="4"
                 />
 
-            <Grid Grid.Column="1" Grid.Row="4">
+            <Grid Grid.Column="1" Grid.Row="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -154,7 +165,7 @@
 
             <Button x:Name="DoneHabit"
                     Command="{Binding DoneHabit}"
-                    BackgroundColor="#3aaa6a"
+                    BackgroundColor="#cc2a45"
                     Text="Done"
                     TextColor="White"
                     FontSize="Small"
@@ -162,7 +173,7 @@
                     HorizontalOptions="Center"
                     Margin="25"
                     Grid.Column="1"
-                    Grid.Row="5"/>
+                    Grid.Row="6"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
