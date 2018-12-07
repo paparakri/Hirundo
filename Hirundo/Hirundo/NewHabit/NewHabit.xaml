@@ -70,7 +70,7 @@
                     />
 
                 <Switch x:Name="Monday"
-                        IsToggled="{Binding days[0]}"
+                        IsToggled="{Binding Monday}"
                         Grid.Column="1"
                         Grid.Row="1"/>
 
@@ -83,7 +83,7 @@
                     />
 
                 <Switch x:Name="Tuesday"
-                        IsToggled="{Binding days[1]}"
+                        IsToggled="{Binding Tuesday}"
                         Grid.Column="2"
                         Grid.Row="1"/>
 
@@ -96,7 +96,7 @@
                     />
 
                 <Switch x:Name="Wednesday"
-                        IsToggled="{Binding days[2]}"
+                        IsToggled="{Binding Wednesday}"
                         Grid.Column="3"
                         Grid.Row="1"/>
 
@@ -109,7 +109,7 @@
                     />
 
                 <Switch x:Name="Thursday"
-                        IsToggled="{Binding days[3]}"
+                        IsToggled="{Binding Thursday}"
                         Grid.Column="4"
                         Grid.Row="1"/>
 
@@ -122,7 +122,7 @@
                     />
 
                 <Switch x:Name="Friday"
-                        IsToggled="{Binding days[4]}"
+                        IsToggled="{Binding Friday}"
                         Grid.Column="1"
                         Grid.Row="3"/>
 
@@ -135,7 +135,7 @@
                     />
 
                 <Switch x:Name="Saturday"
-                        IsToggled="{Binding days[5]}"
+                        IsToggled="{Binding Saturday}"
                         Grid.Column="2"
                         Grid.Row="3"/>
 
@@ -147,7 +147,7 @@
                        Grid.Row="2"/>
 
                 <Switch x:Name="Sunday"
-                        IsToggled="{Binding days[6]}"
+                        IsToggled="{Binding Sunday}"
                         Grid.Column="3"
                         Grid.Row="3"/>
             </Grid>
