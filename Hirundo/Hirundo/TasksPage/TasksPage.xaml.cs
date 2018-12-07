@@ -6,7 +6,7 @@ using SQLite;
 using Xamarin.Forms.Xaml;
 using Hirundo.NewHabit;
 using System.Windows.Input;
-
+using System.Diagnostics;
 
 namespace Hirundo.TasksPage
 {
@@ -27,8 +27,14 @@ namespace Hirundo.TasksPage
                   Episis na broume tropo na kanei toggle to switch 
                   automatically an donetoday==true.
     */
-        SQLiteConnection database;
         public Action moveto_newtask;
+        public SQLiteController database;
+
+        public TasksPage()
+        {
+            database = new SQLiteController();
+        }
+
         public ICommand GoToHabit { set; get; }
 
         public Grid grid = new Grid()
@@ -65,7 +71,7 @@ namespace Hirundo.TasksPage
 
             moveto_newtask += () => App.Current.MainPage = new NavigationPage(new NewHabitPage());
 
-            var donetoggle = new Switch();
+            var donetoggle = new Xamarin.Forms.Switch();
             var spacer = new BoxView();
 
             Label greet = new Label()
@@ -142,7 +148,7 @@ namespace Hirundo.TasksPage
                     VerticalOptions = LayoutOptions.CenterAndExpand
                 }, 3, rowcnt);
 
-                donetoggle = new Switch
+                donetoggle = new Xamarin.Forms.Switch
                 {
                     Margin = 10,
                     HorizontalOptions = LayoutOptions.StartAndExpand,
@@ -151,6 +157,7 @@ namespace Hirundo.TasksPage
 
                 donetoggle.Toggled += (sender, e) => {
                     i.TimesDone++;
+                    database.SaveTask(i);
                     //render_tasks();
                     System.Diagnostics.Debug.WriteLine("===== " + i.TimesDone);
                 };
@@ -162,7 +169,12 @@ namespace Hirundo.TasksPage
                 task_tap.Tapped += async (s, e) =>
                 {
                     bool answer = await DisplayAlert("Confirmation", "Delete task '" + i.title + "'?", "DELETE", "KEEP");
-                    if (answer) i.active = false;
+                    if (answer)
+                    {
+                        i.active = false;
+                        database.SaveTask(i);
+                    }
+
                     //render_tasks();
                     System.Diagnostics.Debug.WriteLine("===== Deleted task: " + i.title);
                 };
@@ -230,4 +242,28 @@ namespace Hirundo.TasksPage
             moveto_newtask();
         }
     }
+
+    public class SQLiteController
+    {
+        SQLiteConnection database;
+
+        public SQLiteController()
+        {
+            database = SQLite_Android.GetConnection();
+        }
+        public bool SaveTask(Task task)
+        {
+            try
+            {
+                database.Insert(task);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("===== " + ex);
+                return false;
+            }
+        }
+    }
+
 }
