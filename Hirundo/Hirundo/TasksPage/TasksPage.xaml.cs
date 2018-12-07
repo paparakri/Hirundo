@@ -15,8 +15,6 @@ namespace Hirundo.TasksPage
 	{
     /*
     BUGS:
-    - spaghetti
-    - den kanei save task.active kai task.donetoday, dk giati, to binding doulevei 
 
     Explanations: kaneis tap sto taskname label kai bgazei dialog gia na to kaneis delete (Line 150).
                   To kano bind se bool Task.active alla dn to kanei save otan kleino to app.
@@ -28,12 +26,7 @@ namespace Hirundo.TasksPage
                   automatically an donetoday==true.
     */
         public Action moveto_newtask;
-        public SQLiteController database;
-
-        public TasksPage()
-        {
-            database = new SQLiteController();
-        }
+        public SQLiteConnection database;
 
         public ICommand GoToHabit { set; get; }
 
@@ -157,7 +150,7 @@ namespace Hirundo.TasksPage
 
                 donetoggle.Toggled += (sender, e) => {
                     i.TimesDone++;
-                    database.SaveTask(i);
+                    SaveTask(i);
                     //render_tasks();
                     System.Diagnostics.Debug.WriteLine("===== " + i.TimesDone);
                 };
@@ -172,7 +165,7 @@ namespace Hirundo.TasksPage
                     if (answer)
                     {
                         i.active = false;
-                        database.SaveTask(i);
+                        SaveTask(i);
                     }
 
                     //render_tasks();
@@ -218,7 +211,7 @@ namespace Hirundo.TasksPage
 
             InitializeComponent();
 
-            System.Diagnostics.Debug.WriteLine("===== IN TASKS PAGE");
+            Debug.WriteLine("===== IN TASKS PAGE");
             database = SQLite_Android.GetConnection();
 
             GoToHabit = new Command(MoveToTask);
@@ -241,16 +234,7 @@ namespace Hirundo.TasksPage
         {
             moveto_newtask();
         }
-    }
 
-    public class SQLiteController
-    {
-        SQLiteConnection database;
-
-        public SQLiteController()
-        {
-            database = SQLite_Android.GetConnection();
-        }
         public bool SaveTask(Task task)
         {
             try
@@ -264,6 +248,6 @@ namespace Hirundo.TasksPage
                 return false;
             }
         }
-    }
 
+    }
 }
