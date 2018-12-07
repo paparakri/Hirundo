@@ -13,12 +13,20 @@ namespace Hirundo.TasksPage
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class TasksPage : ContentPage
 	{
-     /*
-     TO DO:
-     - days[N] binding not working in newhabit
-     - toggle switch automatically if task is completed for today
-     - delete task (set task.active=false)
-     */
+    /*
+    BUGS:
+    - spaghetti
+    - den kanei save task.active kai task.donetoday, dk giati, to binding doulevei 
+
+    Explanations: kaneis tap sto taskname label kai bgazei dialog gia na to kaneis delete (Line 150).
+                  To kano bind se bool Task.active alla dn to kanei save otan kleino to app.
+                  Episis otan kaneis toggle to switch allazei to Task.donetoday se true,
+                  alla dn to kanei save (Line 141). Kano save to teleftaio date pou to ekane donetoday
+                  se Task.lastdone, kai kano reset to donetoday an to lastdone einai prin apo to 
+                  datetime.now.date (Line 107). Des pos ta kanei save sto backend pls kthnx.
+                  Episis na broume tropo na kanei toggle to switch 
+                  automatically an donetoday==true.
+    */
         SQLiteConnection database;
         public Action moveto_newtask;
         public ICommand GoToHabit { set; get; }
@@ -141,7 +149,7 @@ namespace Hirundo.TasksPage
                     System.Diagnostics.Debug.WriteLine("===== "+i.donetoday);
                 };
 
-                donetoggle.IsToggled = i.donetoday;
+                //donetoggle.IsToggled = i.donetoday;
                 grid.Children.Add(donetoggle, 3, rowcnt);
 
                 rowcnt++;
