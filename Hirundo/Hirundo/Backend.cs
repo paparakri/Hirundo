@@ -20,8 +20,15 @@ namespace Hirundo
     {
         [SQLite.PrimaryKey]
         public string title { get; set; }
-        public bool[] daysofweek = new bool[7];
-        public int goal { get; set; }
+
+        public bool monday;
+        public bool tuesday;
+        public bool wednesday;
+        public bool thursday;
+        public bool friday;
+        public bool saturday;
+        public bool sunday;
+
         public int TimesDone { get; set; }
         public bool active { get; set; }
     }
