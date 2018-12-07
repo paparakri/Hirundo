@@ -20,7 +20,7 @@ namespace Hirundo
     {
         [SQLite.PrimaryKey]
         public string title { get; set; }
-
+        public int goal { get; set; }
         public bool monday;
         public bool tuesday;
         public bool wednesday;

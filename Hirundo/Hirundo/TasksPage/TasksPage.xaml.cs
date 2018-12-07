@@ -105,11 +105,13 @@ namespace Hirundo.TasksPage
                 //if (!i.active) continue;
                 taskdays = "";
 
+                /*
                 for (int k = 0; k < 7; k++) {
                     if (i.daysofweek[k])
                         taskdays += daynames[k][0];
                     System.Diagnostics.Debug.WriteLine(i.daysofweek[k]);
                 }
+                */
                 grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
 
                 taskname = new Label {
