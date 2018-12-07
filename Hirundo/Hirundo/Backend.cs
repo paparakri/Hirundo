@@ -22,6 +22,8 @@ namespace Hirundo
         public string title { get; set; }
         public bool[] daysofweek = new bool[7];
         public int TimesDone { get; set; }
+        public bool donetoday;
+        public DateTime lastdone;  
         public bool active=true;
     }
 

@@ -57,7 +57,8 @@ namespace Hirundo.TasksPage
                 "Thursday",
                 "Friday",
                 "Saturday",
-                "Sunday"};
+                "Sunday"
+            };
             string daystring = daynames[dayindex - 1];
 
             moveto_newtask += () => App.Current.MainPage = new NavigationPage(new NewHabitPage());
@@ -88,10 +89,19 @@ namespace Hirundo.TasksPage
 
             int rowcnt = 3;
             string taskdays = "";
+            var taskname = new Label();
 
             //Draw tasks
             foreach (var i in GetTasks()) {
+                if (!i.active) continue;
+
+                System.Diagnostics.Debug.WriteLine("===== " + i.title + " : " + i.donetoday);
+                if (i.lastdone > DateTime.Now.Date)
+                    i.donetoday = false;
+                System.Diagnostics.Debug.WriteLine("===== "+i.title+ " : "+i.donetoday);
+
                 taskdays = "";
+
                 for (int k = 0; k < 7; k++) {
                     if (i.daysofweek[k])
                         taskdays += daynames[k][0];
@@ -99,14 +109,16 @@ namespace Hirundo.TasksPage
                 }
                 grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
 
-                grid.Children.Add(new Label {
+                taskname = new Label {
                     Text = i.title,
                     TextColor = Color.Black,
                     FontSize = 18,
-                    Margin=10,
+                    Margin = 10,
                     HorizontalOptions = LayoutOptions.Start,
                     VerticalOptions = LayoutOptions.CenterAndExpand
-                }, 1, rowcnt);
+                };
+
+                grid.Children.Add(taskname, 1, rowcnt);
 
                 grid.Children.Add(new Label {
                     Text = taskdays,
@@ -123,9 +135,25 @@ namespace Hirundo.TasksPage
                     VerticalOptions = LayoutOptions.StartAndExpand
                 };
 
+                donetoggle.Toggled += (sender, e) => {
+                    i.donetoday = true;
+                    i.lastdone = DateTime.Now.Date;
+                    System.Diagnostics.Debug.WriteLine("===== "+i.donetoday);
+                };
+
+                donetoggle.IsToggled = i.donetoday;
                 grid.Children.Add(donetoggle, 3, rowcnt);
 
                 rowcnt++;
+                var task_tap = new TapGestureRecognizer();
+                task_tap.Tapped += async (s, e) =>
+                {
+                    bool answer = await DisplayAlert("Confirmation", "Delete task '"+i.title+"'?", "DELETE", "KEEP");
+                    if(answer) i.active = false;
+                    System.Diagnostics.Debug.WriteLine("===== Deleted task: "+i.title);
+                };
+                taskname.GestureRecognizers.Add(task_tap);
+
             }
 
             //New task button
@@ -146,7 +174,7 @@ namespace Hirundo.TasksPage
 
             //Add cheesy quote
             var quote = new Label {
-                Text = "\n\nThe way get Started is to quit talking and begin doing. \n\n– Walt Disney",
+                Text = "\n\nThe way get started is to quit talking and begin doing. \n\n– Walt Disney\n",
                 FontSize = 14,
                 FontAttributes = FontAttributes.Italic,
                 TextColor = Color.Gray,
