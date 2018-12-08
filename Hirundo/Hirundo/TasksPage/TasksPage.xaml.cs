@@ -97,7 +97,17 @@ namespace Hirundo.TasksPage
             //Draw tasks
             foreach (var i in GetTasks())
             {
-                //if (!i.active) continue;
+                bool istoday = false;
+                System.Diagnostics.Debug.WriteLine("===== "+daystring);
+                if (i.monday && daystring == "Monday") istoday = true;
+                if(i.tuesday && daystring=="Tuesday") istoday = true;
+                if (i.wednesday && daystring=="Wednesday") istoday = true;
+                if (i.thursday && daystring=="Thursday") istoday = true;
+                if (i.friday && daystring=="Friday") istoday = true;
+                if (i.saturday && daystring=="Saturday") istoday = true;
+                if (i.sunday && daystring=="Sunday") istoday = true;
+
+                if (!istoday) continue;
                 taskdays = "";
 
                 /*

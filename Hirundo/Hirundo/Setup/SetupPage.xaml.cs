@@ -17,7 +17,7 @@ namespace Hirundo.Setup
             var view_model = new ViewModel();
             BindingContext = view_model;
 
-            view_model.moveto_main += () => App.Current.MainPage = new TasksPage.TasksPage();
+            view_model.moveto_main += () => App.Current.MainPage = new NavigationPage(new TasksPage.TasksPage());
 
             InitializeComponent ();
 		}

@@ -166,7 +166,7 @@ namespace Hirundo.NewHabit
             };
 
             controller.SaveTask(newTask);
-            App.Current.MainPage = new TasksPage.TasksPage();
+            App.Current.MainPage = new NavigationPage(new TasksPage.TasksPage());
         }
     }
 }
